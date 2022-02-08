@@ -4,8 +4,10 @@ public class Program
 {
     static void Main(String[] args)
     {
+        Welcome();
         PrintMenu();
         MakeChoice();
+        Console.WriteLine("Thank you for using my program");
     }
 
 
@@ -19,26 +21,33 @@ public class Program
     {
         Console.Write("Twój wybór: ");
         int choice = int.Parse(Console.ReadLine());
+        char repeat;
         switch (choice)
         {
             case 1:
-                Console.Write("Wpisz pierwszą liczbę: ");
-                var firstNumber = double.Parse(Console.ReadLine());
-                Console.Write("Wpisz drugą liczbę: ");
-                var secondNumber = double.Parse(Console.ReadLine());
+                do
+                {
+                    Console.Write("Wpisz pierwszą liczbę: ");
+                    var firstNumber = double.Parse(Console.ReadLine());
+                    Console.Write("Wpisz drugą liczbę: ");
+                    var secondNumber = double.Parse(Console.ReadLine());
 
-                var firstNumberInBinary = decimalToBinary(firstNumber, 10000).TrimEnd('0');
-                var secondNumberInBinary = decimalToBinary(secondNumber, 10000).TrimEnd('0');
+                    var firstNumberInBinary = decimalToBinary(firstNumber, 10000).TrimEnd('0');
+                    var secondNumberInBinary = decimalToBinary(secondNumber, 10000).TrimEnd('0');
 
-                Console.WriteLine($"{firstNumber} in binary is: {firstNumberInBinary}");
-                Console.WriteLine($"{secondNumber} in binary is: {secondNumberInBinary}");
-                Console.Write("Take the operator: [+,-,*,/]: ");
-                
+                    
+                    Console.WriteLine($"{firstNumber} in binary is: {firstNumberInBinary}");
+                    Console.WriteLine($"{secondNumber} in binary is: {secondNumberInBinary}");
+
+                    MakeOperations(firstNumber, secondNumber);
+                    
+                    Console.Write("\nDo you want to repeat ? [y,Y/n,N]: ");
+                    repeat = char.Parse(Console.ReadLine());
+                    
+                } while (repeat is 'y' or 'Y' or 't' or 'T');
 
                 break;
             case 2:
-                char repeat;
-
                 do
                 {
                     Console.Write("Wpisz liczbę, którą chcesz przekonwertować: ");
@@ -50,10 +59,47 @@ public class Program
                     Console.Write("\nDo you want to repeat ? [y,Y/n,N]: ");
                     repeat = char.Parse(Console.ReadLine());
                 } while (repeat is 'y' or 'Y' or 't' or 'T');
+                
+                Console.WriteLine();
+                PrintMenu();
+                MakeChoice();
 
                 break;
         }
-    } 
+    }
+    public static void PrintStars()
+    {
+        Console.WriteLine("*************************************");
+    }
+    public static void Welcome()
+    {
+        PrintStars();
+        Console.WriteLine("DECIMAL TO BINARY CONVERTER ");
+        PrintStars();
+        Console.WriteLine();
+    }
+    public static void MakeOperations(double num1,double num2)
+    {
+        Console.Write("Please choose the operator [+,-,*,/]: ");
+        var userOperator = Console.ReadLine();
+
+        if (userOperator == "+")
+        {
+            Console.WriteLine($"{num1} + {num2} in binary is: {PerformAddition(num1, num2)}");
+        }
+        else if (userOperator == "-")
+        {
+            Console.WriteLine($"{num1} - {num2} in binary is: {PerformSubtraction(num1, num2)}");
+        }
+        else if (userOperator == "*")
+        {
+            Console.WriteLine($"{num1} * {num2} in binary is : {PerformMultiplication(num1, num2)}");
+        }
+        else if (userOperator == "/")
+        {
+            Console.WriteLine($"{num1} / {num2} in binary is: {PerformDivision(num1, num2)}");
+        }
+}
     public static string Array2String<T>(IEnumerable<T> list)
     {
         return string.Join("", list);
@@ -158,31 +204,39 @@ public class Program
         }
         return String.Join("",temparray);
     }
-    static void CalculateBinarySum(int num1, int num2)
+    static string PerformAddition(double num1, double num2)
     {
-        int i = 0;
-        int rem = 0;
-        string str="";
 
-        while (num1 != 0 || num2 != 0)
-        {
-            str += (num1 % 10 + num2 % 10 + rem) % 2;
-            rem = (num1 % 10 + num2 % 10 + rem) / 2;
-
-            num1 = num1 / 10;
-            num2 = num2 / 10;
-        }
-
-        if (rem != 0)
-            str += rem;
+        double sum = num1 + num2;
         
+        var sumInBinary = decimalToBinary(sum, 10000).TrimEnd('0');
 
-        Console.Write("Sum is : ");
-        for (i = str.Length - 1; i >= 0; i--)
-        {
-            Console.Write(str[i]);
-        }
-        Console.WriteLine();
+        return sumInBinary;
+
+    }
+    public static string PerformMultiplication(double num1, double num2)
+    {
+        double multiplication = num1 * num2;
+        
+        var multiplicationInBinary = decimalToBinary(multiplication, 10000).TrimEnd('0');
+
+        return multiplicationInBinary;
+    }
+    public static string PerformDivision(double num1, double num2)
+    {
+        double division = num1 / num2;
+        
+        var divisionInBinary = decimalToBinary(division, 10000).TrimEnd('0');
+
+        return divisionInBinary;
+    }
+    public static string PerformSubtraction(double num1, double num2)
+    {
+        double subtraction = num1-num2;
+        
+        var subtractionInBinary = decimalToBinary(subtraction, 10000).TrimEnd('0');
+
+        return subtractionInBinary;
     }
 
 }
