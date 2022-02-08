@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToZmU1U2", "DecimalToZmU1U2\DecimalToZmU1U2.csproj", "{EA29B9A5-173A-4449-8F60-993B4E3417D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA29B9A5-173A-4449-8F60-993B4E3417D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA29B9A5-173A-4449-8F60-993B4E3417D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA29B9A5-173A-4449-8F60-993B4E3417D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA29B9A5-173A-4449-8F60-993B4E3417D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
