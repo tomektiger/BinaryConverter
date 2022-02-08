@@ -19,7 +19,6 @@ public class Program
         Console.WriteLine("1. Użyć kalkulatora");
         Console.WriteLine("2. Przekonwertować liczbę na ZM,U1,U2");
     }
-    [SuppressMessage("ReSharper.DPA", "DPA0001: Memory allocation issues")]
     public static void MakeChoice()
     {
         Console.Write("Twój wybór: ");
@@ -106,27 +105,21 @@ public class Program
         Console.Write("Please choose the operator [+,-,*,/]: ");
         var userOperator = Console.ReadLine();
 
-        if (num1 < 0 || num2 < 0)
+        if (userOperator == "+")
         {
-            var num1Abs = Math.Abs(num1);
-            var num2Abs = Math.Abs(num2);
-
-            if (userOperator == "+")
-            {
-                Console.WriteLine($"{num1} + {num2} in binary is: {PerformAddition(num1, num2)}");
-            }
-            else if (userOperator == "-")
-            {
-                Console.WriteLine($"{num1} - {num2} in binary is: {PerformSubtraction(num1, num2)}");
-            }
-            else if (userOperator == "*")
-            {
-                Console.WriteLine($"{num1} * {num2} in binary is : {PerformMultiplication(num1, num2)}");
-            }
-            else if (userOperator == "/")
-            {
-                Console.WriteLine($"{num1} / {num2} in binary is: {PerformDivision(num1, num2)}");
-            }
+            Console.WriteLine($"{num1} + {num2} in binary is: {PerformAddition(num1, num2)}");
+        }
+        else if (userOperator == "-")
+        {
+            Console.WriteLine($"{num1} - {num2} in binary is: {PerformSubtraction(num1, num2)}");
+        }
+        else if (userOperator == "*")
+        {
+            Console.WriteLine($"{num1} * {num2} in binary is : {PerformMultiplication(num1, num2)}");
+        }
+        else if (userOperator == "/")
+        {
+            Console.WriteLine($"{num1} / {num2} in binary is: {PerformDivision(num1, num2)}");
         }
     }
     public static string Array2String<T>(IEnumerable<T> list)
