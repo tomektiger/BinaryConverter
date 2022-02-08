@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToZmU1U2", "DecimalToZmU1U2\DecimalToZmU1U2.csproj", "{EA29B9A5-173A-4449-8F60-993B4E3417D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DecimalToBinaryConverter", "DecimalToBinaryConverter\DecimalToBinaryConverter.csproj", "{EA29B9A5-173A-4449-8F60-993B4E3417D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
