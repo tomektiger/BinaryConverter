@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-
-namespace DecimalToBinaryConverter;
+﻿namespace DecimalToBinaryConverter;
 
 public class Program
 {
@@ -18,6 +16,7 @@ public class Program
         Console.WriteLine("Co chcesz zrobić ?: ");
         Console.WriteLine("1. Użyć kalkulatora");
         Console.WriteLine("2. Przekonwertować liczbę na ZM,U1,U2");
+        Console.WriteLine("3. Zamienić liczbę binarną na dziesiętną");
     }
     public static void MakeChoice()
     {
@@ -33,40 +32,46 @@ public class Program
                     var firstNumber = double.Parse(Console.ReadLine());
                     Console.Write("Wpisz drugą liczbę: ");
                     var secondNumber = double.Parse(Console.ReadLine());
-                    
+
                     var firstNumberAbs = Math.Abs(firstNumber);
                     var secondNumberAbs = Math.Abs(secondNumber);
                     var firstNumberInBinary = decimalToBinary(firstNumber, 10000).TrimEnd('0');
                     var firstNumberAbsInBinary = decimalToBinary(firstNumberAbs, 10000).TrimEnd('0');
                     var secondNumberAbsInBinary = decimalToBinary(secondNumberAbs, 10000).TrimEnd('0');
                     var secondNumberInBinary = decimalToBinary(secondNumber, 10000).TrimEnd('0');
-                    
-                        if (firstNumber < 0)
-                        {
-                            Console.WriteLine($"{firstNumber} in binary is: -{firstNumberAbsInBinary}");
 
-                        }
+                    if (firstNumber < 0)
+                    {
+                        Console.WriteLine($"{firstNumber} in binary is: -{firstNumberAbsInBinary}");
 
-                        if (secondNumber < 0)
-                        {
-                            Console.WriteLine($"{secondNumber} in binary is: -{secondNumberAbsInBinary}");
+                    }
 
-                        }
-                        if(firstNumber>0){
-                            Console.WriteLine($"{firstNumber} in binary is: {firstNumberInBinary}");
-                        }
+                    if (secondNumber < 0)
+                    {
+                        Console.WriteLine($"{secondNumber} in binary is: -{secondNumberAbsInBinary}");
 
-                        if (secondNumber > 0)
-                        {
-                            Console.WriteLine($"{secondNumber} in binary is: {secondNumberInBinary}");
-                        }
+                    }
 
-                        MakeOperations(firstNumber, secondNumber);
-                    
+                    if (firstNumber > 0)
+                    {
+                        Console.WriteLine($"{firstNumber} in binary is: {firstNumberInBinary}");
+                    }
+
+                    if (secondNumber > 0)
+                    {
+                        Console.WriteLine($"{secondNumber} in binary is: {secondNumberInBinary}");
+                    }
+
+                    MakeOperations(firstNumber, secondNumber);
+
                     Console.Write("\nDo you want to repeat ? [y,Y/n,N]: ");
                     repeat = char.Parse(Console.ReadLine());
-                    
+
                 } while (repeat is 'y' or 'Y' or 't' or 'T');
+
+                Console.WriteLine();
+                PrintMenu();
+                MakeChoice();
 
                 break;
             case 2:
@@ -81,7 +86,22 @@ public class Program
                     Console.Write("\nDo you want to repeat ? [y,Y/n,N]: ");
                     repeat = char.Parse(Console.ReadLine());
                 } while (repeat is 'y' or 'Y' or 't' or 'T');
-                
+
+                Console.WriteLine();
+                PrintMenu();
+                MakeChoice();
+
+                break;
+            case 3:
+                do
+                {
+                    Console.Write("Podaj liczbę, którą chcesz przekonwertować: ");
+                    string numberToConvert = Console.ReadLine();
+                    Console.WriteLine($"{numberToConvert} w zapisie 10 to: {BinaryToDecimal(numberToConvert)}");
+                    Console.Write("\nDo you want to repeat ? [y,Y/n,N]: ");
+                    repeat = char.Parse(Console.ReadLine());
+                } while (repeat is 'y' or 'Y' or 't' or 'T');
+
                 Console.WriteLine();
                 PrintMenu();
                 MakeChoice();
@@ -99,6 +119,11 @@ public class Program
         Console.WriteLine("DECIMAL TO BINARY CONVERTER ");
         PrintStars();
         Console.WriteLine();
+    }
+
+    public static String BinaryToDecimal(string number)
+    {
+        return Convert.ToInt64(number,2).ToString();
     }
     public static void MakeOperations(double num1, double num2)
     {
