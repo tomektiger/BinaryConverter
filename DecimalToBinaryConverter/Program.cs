@@ -1,18 +1,24 @@
-﻿using System.Text.RegularExpressions;
-
-namespace DecimalToZmU1U2;
+﻿namespace DecimalToBinaryConverter;
 
 public class Program
 {
     static void Main(String[] args)
     {
+        PrintMenu();
+        MakeChoice();
+    }
 
+
+    public static void PrintMenu()
+    {
         Console.WriteLine("Co chcesz zrobić ?: ");
         Console.WriteLine("1. Użyć kalkulatora");
         Console.WriteLine("2. Przekonwertować liczbę na ZM,U1,U2");
+    }
+    public static void MakeChoice()
+    {
         Console.Write("Twój wybór: ");
         int choice = int.Parse(Console.ReadLine());
-
         switch (choice)
         {
             case 1:
@@ -21,8 +27,8 @@ public class Program
                 Console.Write("Wpisz drugą liczbę: ");
                 var secondNumber = double.Parse(Console.ReadLine());
 
-                var firstNumberInBinary = decimalToBinary(firstNumber, 100000).TrimEnd('0');
-                var secondNumberInBinary = decimalToBinary(secondNumber, 100000).TrimEnd('0');
+                var firstNumberInBinary = decimalToBinary(firstNumber, 10000).TrimEnd('0');
+                var secondNumberInBinary = decimalToBinary(secondNumber, 10000).TrimEnd('0');
 
                 Console.WriteLine($"{firstNumber} in binary is: {firstNumberInBinary}");
                 Console.WriteLine($"{secondNumber} in binary is: {secondNumberInBinary}");
@@ -47,13 +53,11 @@ public class Program
 
                 break;
         }
-    }
-
+    } 
     public static string Array2String<T>(IEnumerable<T> list)
     {
         return string.Join("", list);
     }
-
     public static void ConvertDecimalToZmU1U2(int liczba)
     {
         int negacja = 0;
@@ -83,12 +87,11 @@ public class Program
         }
         U1[0] = ZM[0];
         //dla kontroli
-        Console.WriteLine("U2: "+Array2String(U2));
-        Console.WriteLine("ZM: "+Array2String(ZM));
-        Console.WriteLine("U1: "+Array2String(U1));
+        Console.WriteLine("U2: "+Array2String(U2).TrimStart('0'));
+        Console.WriteLine("ZM: "+Array2String(ZM).TrimStart('0'));
+        Console.WriteLine("U1: "+Array2String(U1).TrimStart('0'));
         
     }
-
     static String decimalToBinary(double num, int k_prec)
     {
         String binary = "";
@@ -155,7 +158,6 @@ public class Program
         }
         return String.Join("",temparray);
     }
-    
     static void CalculateBinarySum(int num1, int num2)
     {
         int i = 0;
